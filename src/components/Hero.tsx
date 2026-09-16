@@ -2,6 +2,7 @@ import styled, { keyframes } from 'styled-components'
 import { profile } from '../data/profile'
 import { useTwitchChannel } from '../hooks/useTwitchChannel'
 import { ArrowIcon } from './icons'
+import { Reveal } from './Reveal'
 import { Seal } from './Seal'
 
 const pulse = keyframes`
@@ -270,30 +271,40 @@ export function Hero() {
           <Avatar src="/avatar.png" alt={profile.name} />
         </Portrait>
         <Copy>
-          <Kana>{profile.kana}</Kana>
-          <Name>{profile.name}</Name>
-          <Motto>{profile.mottoEn}</Motto>
-          <Meta>
-            {live ? (
-              <Live>
-                <i />
-                生放送 · live
-              </Live>
-            ) : (
-              <Chip>オフライン · offline</Chip>
-            )}
-            <Chip>{game ? `Twitch · ${game}` : 'Twitch'}</Chip>
-            <Chip>since {profile.since}</Chip>
-          </Meta>
-          <Actions>
-            <Primary href="#stream">
-              視聴する · смотреть
-              <ArrowIcon />
-            </Primary>
-            <Ghost href={profile.twitch} target="_blank" rel="noreferrer">
-              Twitch
-            </Ghost>
-          </Actions>
+          <Reveal from="right" fill={false} delay={80}>
+            <Kana>{profile.kana}</Kana>
+          </Reveal>
+          <Reveal from="right" fill={false} delay={220}>
+            <Name>{profile.name}</Name>
+          </Reveal>
+          <Reveal from="right" fill={false} delay={360}>
+            <Motto>{profile.mottoEn}</Motto>
+          </Reveal>
+          <Reveal from="right" fill={false} delay={500}>
+            <Meta>
+              {live ? (
+                <Live>
+                  <i />
+                  生放送 · live
+                </Live>
+              ) : (
+                <Chip>オフライン · offline</Chip>
+              )}
+              <Chip>{game ? `Twitch · ${game}` : 'Twitch'}</Chip>
+              <Chip>since {profile.since}</Chip>
+            </Meta>
+          </Reveal>
+          <Reveal from="right" fill={false} delay={640}>
+            <Actions>
+              <Primary href="#stream">
+                視聴する · смотреть
+                <ArrowIcon />
+              </Primary>
+              <Ghost href={profile.twitch} target="_blank" rel="noreferrer">
+                Twitch
+              </Ghost>
+            </Actions>
+          </Reveal>
         </Copy>
       </Layout>
       <Stamp size={78} />

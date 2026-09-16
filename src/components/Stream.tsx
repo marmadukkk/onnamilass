@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { profile } from '../data/profile'
 import { useTwitchChannel } from '../hooks/useTwitchChannel'
 import { Corners } from './Corners'
+import { Reveal } from './Reveal'
 
 const Wrap = styled.section`
   position: relative;
@@ -98,30 +99,34 @@ export function Stream() {
 
   return (
     <Wrap id="stream">
-      <Head>
-        <Title>
-          <small>配信</small>
-          Стрим
-        </Title>
-        <Status $live={live} href={profile.twitch} target="_blank" rel="noreferrer">
-          {live ? 'сейчас в эфире →' : 'открыть на twitch →'}
-        </Status>
-      </Head>
-      <Frame>
-        <Corners size={110} />
-        <Grid>
-          <Player
-            src={`https://player.twitch.tv/?channel=${profile.login}&parent=${parent}&muted=true`}
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            title={`Twitch — ${profile.name}`}
-          />
-          <Chat
-            src={`https://www.twitch.tv/embed/${profile.login}/chat?parent=${parent}&darkpopout`}
-            title="Twitch chat"
-          />
-        </Grid>
-      </Frame>
+      <Reveal>
+        <Head>
+          <Title>
+            <small>配信</small>
+            Стрим
+          </Title>
+          <Status $live={live} href={profile.twitch} target="_blank" rel="noreferrer">
+            {live ? 'сейчас в эфире →' : 'открыть на twitch →'}
+          </Status>
+        </Head>
+      </Reveal>
+      <Reveal delay={120}>
+        <Frame>
+          <Corners size={110} />
+          <Grid>
+            <Player
+              src={`https://player.twitch.tv/?channel=${profile.login}&parent=${parent}&muted=true`}
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              title={`Twitch — ${profile.name}`}
+            />
+            <Chat
+              src={`https://www.twitch.tv/embed/${profile.login}/chat?parent=${parent}&darkpopout`}
+              title="Twitch chat"
+            />
+          </Grid>
+        </Frame>
+      </Reveal>
     </Wrap>
   )
 }

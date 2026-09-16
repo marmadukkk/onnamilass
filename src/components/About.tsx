@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { profile } from '../data/profile'
 import { useTwitchChannel } from '../hooks/useTwitchChannel'
 import { Corners } from './Corners'
+import { Reveal } from './Reveal'
 
 const Wrap = styled.section`
   position: relative;
@@ -122,32 +123,36 @@ export function About() {
   return (
     <Wrap id="about">
       <Inner>
-        <Scroll>
-          <img src="/kakejiku.jpg" alt="Какедзику: глициния и луна" />
-        </Scroll>
-        <Copy>
-          <Corners size={120} />
-          <Eyebrow>自己紹介</Eyebrow>
-          <Title>О себе</Title>
-          <Quote>
-            {profile.mottoJp}
-            <span>
-              {profile.mottoEn} · {profile.mottoRu}
-            </span>
-          </Quote>
-          <Body>
-            Канал на Twitch с августа {profile.since}. Девиз тот же, что на
-            канале: без врагов, только игра и эфир.
-          </Body>
-          <Last>
-            <strong>
-              {live
-                ? '今配信中 · сейчас в эфире'
-                : '最後の配信 · последний эфир'}
-            </strong>
-            {game ? `${game} — «${title}»` : `«${title}»`}
-          </Last>
-        </Copy>
+        <Reveal>
+          <Scroll>
+            <img src="/kakejiku.jpg" alt="Какедзику: глициния и луна" />
+          </Scroll>
+        </Reveal>
+        <Reveal delay={140}>
+          <Copy>
+            <Corners size={120} />
+            <Eyebrow>自己紹介</Eyebrow>
+            <Title>О себе</Title>
+            <Quote>
+              {profile.mottoJp}
+              <span>
+                {profile.mottoEn} · {profile.mottoRu}
+              </span>
+            </Quote>
+            <Body>
+              Канал на Twitch с августа {profile.since}. Девиз тот же, что на
+              канале: без врагов, только игра и эфир.
+            </Body>
+            <Last>
+              <strong>
+                {live
+                  ? '今配信中 · сейчас в эфире'
+                  : '最後の配信 · последний эфир'}
+              </strong>
+              {game ? `${game} — «${title}»` : `«${title}»`}
+            </Last>
+          </Copy>
+        </Reveal>
       </Inner>
     </Wrap>
   )

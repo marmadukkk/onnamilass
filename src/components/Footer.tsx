@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { profile } from '../data/profile'
+import { Reveal } from './Reveal'
 import { Seal } from './Seal'
 
 const Bar = styled.footer`
@@ -15,6 +16,13 @@ const Bar = styled.footer`
   text-align: center;
 `
 
+const Cluster = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+`
+
 const Motto = styled.p`
   font-family: ${({ theme }) => theme.fonts.jp};
   letter-spacing: 0.4em;
@@ -24,11 +32,15 @@ const Motto = styled.p`
 export function Footer() {
   return (
     <Bar>
-      <Seal size={64} />
-      <Motto>{profile.mottoJp}</Motto>
-      <p>
-        © {new Date().getFullYear()} {profile.name} · オンナミラス
-      </p>
+      <Reveal>
+        <Cluster>
+          <Seal size={64} />
+          <Motto>{profile.mottoJp}</Motto>
+          <p>
+            © {new Date().getFullYear()} {profile.name} · オンナミラス
+          </p>
+        </Cluster>
+      </Reveal>
     </Bar>
   )
 }

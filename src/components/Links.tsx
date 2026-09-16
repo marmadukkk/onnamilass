@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { profile } from '../data/profile'
 import { InstagramIcon, SteamIcon, TwitchIcon, YoutubeIcon } from './icons'
+import { Reveal } from './Reveal'
 
 const Wrap = styled.section`
   position: relative;
@@ -44,6 +45,7 @@ const Card = styled.a`
   position: relative;
   overflow: hidden;
   min-height: 150px;
+  height: 100%;
   padding: 1.4rem 1.3rem;
   border: 1px solid ${({ theme }) => theme.colors.line};
   background: ${({ theme }) => theme.colors.bgRaised};
@@ -132,25 +134,29 @@ export function Links() {
   return (
     <Wrap id="links">
       <Inner>
-        <Title>
-          <small>縁</small>
-          Связь
-        </Title>
+        <Reveal>
+          <Title>
+            <small>縁</small>
+            Связь
+          </Title>
+        </Reveal>
         <Grid>
-          {links.map((link) => {
+          {links.map((link, index) => {
             const Icon = link.icon
             return (
-              <Card key={link.href} href={link.href} target="_blank" rel="noreferrer">
-                <Bloom src="/wisteria.jpg" alt="" />
-                <Top>
-                  <Jp>{link.jp}</Jp>
-                  <Icon />
-                </Top>
-                <div>
-                  <Label>{link.label}</Label>
-                  <Handle>{link.handle}</Handle>
-                </div>
-              </Card>
+              <Reveal key={link.href} delay={index * 90}>
+                <Card href={link.href} target="_blank" rel="noreferrer">
+                  <Bloom src="/wisteria.jpg" alt="" />
+                  <Top>
+                    <Jp>{link.jp}</Jp>
+                    <Icon />
+                  </Top>
+                  <div>
+                    <Label>{link.label}</Label>
+                    <Handle>{link.handle}</Handle>
+                  </div>
+                </Card>
+              </Reveal>
             )
           })}
         </Grid>
